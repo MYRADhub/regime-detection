@@ -9,6 +9,7 @@ machine-learning market regime models (a 2-regime hidden Markov model) in Value-
 |---|---|
 | `starter_notebook.ipynb` | Runs the whole experiment and draws the charts. Start here. |
 | `regime_var.py` | All model code: the three HMM versions, the benchmarks and the scoring tests. |
+| `run_robustness.py` | Extra experiments: 4 indices, window lengths, random seeds, 3 regimes, bootstrap CIs (about 15 min). |
 | `tests/test_regime_var.py` | Checks, including proof that the honest version never uses future data. |
 | `data/sp500.csv` | Cached S&P 500 prices (1990-2025), so everyone uses the same data. |
 | `results/` | Tables (CSV) and charts (PNG) written by the notebook. |
@@ -21,7 +22,7 @@ Locally:
 ```
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m pytest          # 16 tests, about 20 seconds
+.venv/bin/python -m pytest          # 19 tests, about 20 seconds
 .venv/bin/jupyter notebook starter_notebook.ipynb
 ```
 

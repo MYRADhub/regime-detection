@@ -137,7 +137,7 @@ def _quantiles_from_weights(weights, means, sds, alphas):
 # ---------------------------------------------------------------------------
 
 
-def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=False, n_regimes=2):
+def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=False, n_regimes=2, seed=0, smoothed_lag=False):
     """Versions B and C: fit the HMM once on ALL data (deliberately biased).
 
     smoothed=False -> Version B: the regime weights for day t are the filtered
@@ -145,12 +145,18 @@ def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=F
     smoothed=True  -> Version C: the regime weights for day t are the smoothed
                       probabilities for day t itself, which use day t's return
                       and every later return (hindsight regime labels).
+    smoothed_lag   -> milder Version C (robustness check): smoothed
+                      probabilities for day t-1, pushed one step forward. Still
+                      uses future returns, but not the hindsight label of day t.
     """
     x = returns.to_numpy()
-    model = fit_hmm(x, n_regimes=n_regimes)
+    model = fit_hmm(x, n_regimes=n_regimes, seed=seed)
     means, sds, transmat, startprob = hmm_params(model)
 
-    if smoothed:
+    if smoothed and smoothed_lag:
+        gamma = model.predict_proba(x.reshape(-1, 1))
+        weights_all = np.vstack([startprob, (gamma @ transmat)[:-1]])
+    elif smoothed:
         weights_all = model.predict_proba(x.reshape(-1, 1))
     else:
         alpha = filtered_probs(x, means, sds, transmat, startprob)
@@ -162,7 +168,7 @@ def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=F
     return _as_frame(q, returns.index[mask], alphas)
 
 
-def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2):
+def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2, seed=0):
     """Version A (honest): only past data is ever used.
 
     Every `refit_every` days the HMM is refit on the last `window` returns.
@@ -179,7 +185,7 @@ def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, r
     for block_start in range(first, len(x), refit_every):
         block_end = min(block_start + refit_every, len(x))
         train = x[block_start - window : block_start]
-        model = fit_hmm(train, n_regimes=n_regimes)
+        model = fit_hmm(train, n_regimes=n_regimes, seed=seed)
         means, sds, transmat, startprob = hmm_params(model)
 
         # Filter from the start of the training window up to the day before
@@ -301,6 +307,25 @@ def diebold_mariano(loss_a, loss_b, lags=None):
         var += 2 * w * np.dot(d_c[k:], d_c[:-k]) / n
     stat = d.mean() / np.sqrt(var / n)
     return stat, 2 * (1 - stats.norm.cdf(abs(stat)))
+
+
+def premium_with_ci(loss_honest, loss_biased, block=20, n_boot=2000, level=0.95, seed=0):
+    """Look-ahead premium = % by which the biased model's average loss is lower.
+
+    Returns (premium %, lower %, upper %). The confidence interval comes from a
+    moving-block bootstrap: we resample blocks of `block` consecutive days, so
+    that calm and stormy stretches stay together.
+    """
+    a, b = np.asarray(loss_honest, dtype=float), np.asarray(loss_biased, dtype=float)
+    n = len(a)
+    rng = np.random.default_rng(seed)
+    n_blocks = int(np.ceil(n / block))
+    starts = rng.integers(0, n - block + 1, size=(n_boot, n_blocks))
+    idx = (starts[:, :, None] + np.arange(block)[None, None, :]).reshape(n_boot, -1)[:, :n]
+    boot = 100 * (1 - b[idx].mean(axis=1) / a[idx].mean(axis=1))
+    tail = (1 - level) / 2
+    lo, hi = np.quantile(boot, [tail, 1 - tail])
+    return 100 * (1 - b.mean() / a.mean()), lo, hi
 
 
 def _xlogy(x, y):

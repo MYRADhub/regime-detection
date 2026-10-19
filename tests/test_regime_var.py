@@ -141,6 +141,35 @@ def test_benchmarks_ignore_the_future(returns):
         pd.testing.assert_frame_equal(original.loc[:check_day], altered.loc[:check_day])
 
 
+def test_milder_retrospective_version_also_leaks(returns):
+    start = returns.index[300]
+    check_day = returns.index[450]
+    original = rv.hmm_var_full_sample(returns, start, smoothed=True, smoothed_lag=True)
+    altered = rv.hmm_var_full_sample(_scramble_after(returns, check_day), start, smoothed=True, smoothed_lag=True)
+    assert not np.allclose(original.loc[check_day], altered.loc[check_day])
+
+
+# --- bootstrap confidence interval ---------------------------------------------
+
+
+def test_premium_ci_contains_estimate_and_detects_a_real_gap():
+    rng = np.random.default_rng(3)
+    honest = rng.exponential(1.0, 3000)
+    biased = honest * 0.8  # biased model has 20% lower loss on every day
+    est, lo, hi = rv.premium_with_ci(honest, biased)
+    assert est == pytest.approx(20.0)
+    assert lo <= est <= hi
+    assert lo == pytest.approx(20.0) and hi == pytest.approx(20.0)
+
+
+def test_premium_ci_covers_zero_when_there_is_no_gap():
+    rng = np.random.default_rng(4)
+    honest = rng.exponential(1.0, 3000)
+    biased = rng.exponential(1.0, 3000)
+    est, lo, hi = rv.premium_with_ci(honest, biased)
+    assert lo < 0 < hi
+
+
 # --- shapes ------------------------------------------------------------------
 
 

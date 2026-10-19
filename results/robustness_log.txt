@@ -1,0 +1,64 @@
+done: indices / S&P 500
+done: indices / FTSE 100
+done: indices / Nikkei 225
+done: indices / DAX
+done: window / 500 days
+done: window / 1500 days
+done: seed / seed 10
+done: seed / seed 20
+done: seed / seed 30
+done: seed / seed 40
+done: regimes / 3 regimes
+experiment    setting                   comparison VaR level  loss reduction vs A %  95% CI low  95% CI high  DM p-value
+   indices    S&P 500  C retrospective vs A honest       95%                 15.282      11.759       18.525       0.000
+   indices    S&P 500 B future-trained vs A honest       95%                  2.060      -1.249        4.883       0.192
+   indices    S&P 500          GARCH-t vs A honest       95%                  8.941       3.468       14.683       0.006
+   indices    S&P 500  C retrospective vs A honest       99%                 20.468      13.075       27.064       0.000
+   indices    S&P 500 B future-trained vs A honest       99%                  4.188      -4.035       10.680       0.278
+   indices    S&P 500          GARCH-t vs A honest       99%                 20.469       3.515       35.107       0.046
+   indices   FTSE 100  C retrospective vs A honest       95%                 14.558      11.659       17.352       0.000
+   indices   FTSE 100 B future-trained vs A honest       95%                  1.290      -0.967        3.450       0.280
+   indices   FTSE 100          GARCH-t vs A honest       95%                  5.610       1.625       10.164       0.020
+   indices   FTSE 100  C retrospective vs A honest       99%                 23.423      17.606       28.879       0.000
+   indices   FTSE 100 B future-trained vs A honest       99%                  6.745       0.468       12.459       0.061
+   indices   FTSE 100          GARCH-t vs A honest       99%                 14.146       1.911       25.838       0.070
+   indices Nikkei 225  C retrospective vs A honest       95%                 14.980      11.971       17.894       0.000
+   indices Nikkei 225 B future-trained vs A honest       95%                  2.330      -0.438        4.868       0.105
+   indices Nikkei 225          GARCH-t vs A honest       95%                  4.329       0.782        8.752       0.059
+   indices Nikkei 225  C retrospective vs A honest       99%                 24.179      18.533       28.737       0.000
+   indices Nikkei 225 B future-trained vs A honest       99%                  8.554       1.139       14.570       0.042
+   indices Nikkei 225          GARCH-t vs A honest       99%                 11.410      -0.357       24.943       0.163
+   indices        DAX  C retrospective vs A honest       95%                 14.740      12.043       17.450       0.000
+   indices        DAX B future-trained vs A honest       95%                  1.546      -1.227        4.267       0.278
+   indices        DAX          GARCH-t vs A honest       95%                  4.924       1.612        8.302       0.008
+   indices        DAX  C retrospective vs A honest       99%                 27.075      21.633       31.887       0.000
+   indices        DAX B future-trained vs A honest       99%                 10.134       3.023       16.419       0.020
+   indices        DAX          GARCH-t vs A honest       99%                 15.177       6.441       23.750       0.009
+    window   500 days  C retrospective vs A honest       95%                 15.561      10.916       19.789       0.000
+    window   500 days B future-trained vs A honest       95%                  2.383      -2.433        6.184       0.298
+    window   500 days  C retrospective vs A honest       99%                 21.918      11.468       30.893       0.000
+    window   500 days B future-trained vs A honest       99%                  5.935      -5.485       14.748       0.276
+    window  1500 days  C retrospective vs A honest       95%                 15.947      12.806       18.785       0.000
+    window  1500 days B future-trained vs A honest       95%                  2.830      -0.046        5.353       0.049
+    window  1500 days  C retrospective vs A honest       99%                 21.484      15.213       26.695       0.000
+    window  1500 days B future-trained vs A honest       99%                  5.412      -2.101       11.221       0.153
+      seed    seed 10  C retrospective vs A honest       95%                 15.384      11.879       18.592       0.000
+      seed    seed 10 B future-trained vs A honest       95%                  2.178      -1.197        5.008       0.168
+      seed    seed 10  C retrospective vs A honest       99%                 20.636      13.261       27.244       0.000
+      seed    seed 10 B future-trained vs A honest       99%                  4.391      -3.679       10.893       0.254
+      seed    seed 20  C retrospective vs A honest       95%                 15.752      12.203       19.022       0.000
+      seed    seed 20 B future-trained vs A honest       95%                  2.605      -0.614        5.355       0.097
+      seed    seed 20  C retrospective vs A honest       99%                 20.510      13.042       26.997       0.000
+      seed    seed 20 B future-trained vs A honest       99%                  4.239      -3.696       10.712       0.268
+      seed    seed 30  C retrospective vs A honest       95%                 15.229      11.706       18.469       0.000
+      seed    seed 30 B future-trained vs A honest       95%                  2.002      -1.313        4.848       0.206
+      seed    seed 30  C retrospective vs A honest       99%                 20.392      12.892       26.988       0.000
+      seed    seed 30 B future-trained vs A honest       99%                  4.094      -4.089       10.580       0.289
+      seed    seed 40  C retrospective vs A honest       95%                 15.242      11.737       18.477       0.000
+      seed    seed 40 B future-trained vs A honest       95%                  2.015      -1.304        4.845       0.203
+      seed    seed 40  C retrospective vs A honest       99%                 20.428      12.949       27.019       0.000
+      seed    seed 40 B future-trained vs A honest       99%                  4.139      -4.062       10.659       0.284
+   regimes  3 regimes  C retrospective vs A honest       95%                 19.813      15.961       23.493       0.000
+   regimes  3 regimes B future-trained vs A honest       95%                  4.438       0.931        7.853       0.023
+   regimes  3 regimes  C retrospective vs A honest       99%                 29.745      21.888       36.011       0.000
+   regimes  3 regimes B future-trained vs A honest       99%                  6.780      -2.795       15.027       0.178
