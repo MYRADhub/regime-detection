@@ -25,12 +25,14 @@ write yourselves (NHSJS does not allow AI-written prose). Facts each caption sho
 | `table3_main_results` | S&P 500: breach rates, Kupiec, Christoffersen, quantile loss, all 5 methods |
 | `table4_look_ahead_premium` | Premium C, C mild, B vs A, 4 indices, with 95% CIs |
 | `table5_benchmarks` | Historical simulation and GARCH-t vs the honest HMM, 4 indices |
-| `table6_diebold_mariano` | Diebold-Mariano tests, S&P 500 |
+| `table6_diebold_mariano` | Diebold-Mariano tests, S&P 500, with Holm-adjusted p-values |
 | `table7_crisis_vs_calm` | Crisis vs calm periods, S&P 500 |
 | `table8_robustness` | Window length, seeds, 3 regimes |
 | `table9_basel_traffic_light` | Basel zones per method, 4 indices (made by `run_extras.py`) |
 | `table10_detection_delay` | Days until the honest model notices a stormy regime |
 | `table11_premium_near_switches` | Share of the premium from the 20 days after regime switches |
+| `table12_fat_tailed_scores`, `table12b_fat_tailed_premium` | Fat-tailed HMM: scores and premium (made by `run_improvements.py`) |
+| `table13_subperiods` | Premium in 2005-09, 2010-14, 2015-19, 2020-25 |
 
 NHSJS needs at least 5 figures or tables in total. Suggested main text: Figures 1, 3, 5 and Tables 1, 3, 4, 5, 9, 11.
 Put the rest in an appendix.

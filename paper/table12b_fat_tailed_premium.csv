@@ -1,0 +1,5 @@
+index,A honest (fat-tailed) vs A honest 95%,A honest (fat-tailed) vs A honest 99%,B future-trained (fat-tailed) vs A honest (fat-tailed) 95%,B future-trained (fat-tailed) vs A honest (fat-tailed) 99%,C retrospective (fat-tailed) vs A honest (fat-tailed) 95%,C retrospective (fat-tailed) vs A honest (fat-tailed) 99%,GARCH-t vs A honest (fat-tailed) 95%,GARCH-t vs A honest (fat-tailed) 99%
+DAX,"-0.1 [-1.0, 0.7]","0.9 [-1.7, 4.3]","2.3 [-0.6, 5.1]","10.6 [3.1, 17.6]*","14.7 [12.0, 17.3]*","25.4 [18.9, 31.0]*","5.0 [1.3, 9.0]*","14.4 [6.2, 22.6]*"
+FTSE 100,"-0.0 [-0.9, 0.8]","0.3 [-1.6, 1.9]","1.3 [-0.7, 3.4]","9.2 [2.0, 15.4]*","14.2 [11.6, 16.9]*","24.9 [19.1, 29.9]*","5.6 [1.3, 10.5]*","13.9 [2.1, 25.2]"
+Nikkei 225,"-0.2 [-0.9, 0.3]","2.3 [-0.6, 5.0]","2.5 [-0.1, 4.9]","8.2 [1.1, 13.8]*","14.3 [11.5, 17.1]*","23.0 [17.6, 27.4]*","4.6 [1.0, 9.0]*","9.3 [-2.1, 21.9]"
+S&P 500,"0.5 [-0.5, 1.3]","2.0 [-2.7, 6.0]","1.4 [-1.3, 4.0]","6.3 [-2.7, 13.4]","14.2 [10.8, 17.6]*","21.2 [13.1, 27.9]*","8.5 [3.1, 14.2]*","18.8 [4.1, 32.6]*"

@@ -1,0 +1,33 @@
+index,VaR level,comparison,loss reduction %,95% CI low,95% CI high,DM p-value
+S&P 500,95%,C retrospective (fat-tailed) vs A honest (fat-tailed),14.2174,10.8409,17.565,0.0
+S&P 500,95%,B future-trained (fat-tailed) vs A honest (fat-tailed),1.4359,-1.3059,3.9692,0.287
+S&P 500,95%,A honest (fat-tailed) vs A honest,0.4648,-0.5215,1.3331,0.3491
+S&P 500,95%,GARCH-t vs A honest (fat-tailed),8.5157,3.0517,14.1552,0.008
+S&P 500,99%,C retrospective (fat-tailed) vs A honest (fat-tailed),21.2144,13.1207,27.943,0.0
+S&P 500,99%,B future-trained (fat-tailed) vs A honest (fat-tailed),6.292,-2.7205,13.4035,0.1508
+S&P 500,99%,A honest (fat-tailed) vs A honest,2.0409,-2.6891,6.0438,0.3953
+S&P 500,99%,GARCH-t vs A honest (fat-tailed),18.8118,4.0838,32.5689,0.0391
+FTSE 100,95%,C retrospective (fat-tailed) vs A honest (fat-tailed),14.2299,11.5556,16.8694,0.0
+FTSE 100,95%,B future-trained (fat-tailed) vs A honest (fat-tailed),1.3395,-0.7005,3.4441,0.2303
+FTSE 100,95%,A honest (fat-tailed) vs A honest,-0.0321,-0.8699,0.7752,0.9398
+FTSE 100,95%,GARCH-t vs A honest (fat-tailed),5.6406,1.2972,10.4738,0.0292
+FTSE 100,99%,C retrospective (fat-tailed) vs A honest (fat-tailed),24.866,19.1464,29.86,0.0
+FTSE 100,99%,B future-trained (fat-tailed) vs A honest (fat-tailed),9.1624,2.0416,15.3532,0.0327
+FTSE 100,99%,A honest (fat-tailed) vs A honest,0.2739,-1.588,1.8679,0.7564
+FTSE 100,99%,GARCH-t vs A honest (fat-tailed),13.9103,2.0854,25.2481,0.0635
+Nikkei 225,95%,C retrospective (fat-tailed) vs A honest (fat-tailed),14.3436,11.4897,17.0834,0.0
+Nikkei 225,95%,B future-trained (fat-tailed) vs A honest (fat-tailed),2.5015,-0.0751,4.9224,0.0583
+Nikkei 225,95%,A honest (fat-tailed) vs A honest,-0.2368,-0.8596,0.2869,0.412
+Nikkei 225,95%,GARCH-t vs A honest (fat-tailed),4.5548,0.9515,9.027,0.0486
+Nikkei 225,99%,C retrospective (fat-tailed) vs A honest (fat-tailed),23.0139,17.5997,27.4477,0.0
+Nikkei 225,99%,B future-trained (fat-tailed) vs A honest (fat-tailed),8.2414,1.095,13.7955,0.0348
+Nikkei 225,99%,A honest (fat-tailed) vs A honest,2.3208,-0.6002,5.0105,0.1554
+Nikkei 225,99%,GARCH-t vs A honest (fat-tailed),9.3055,-2.0908,21.9369,0.1957
+DAX,95%,C retrospective (fat-tailed) vs A honest (fat-tailed),14.6778,11.9939,17.2872,0.0
+DAX,95%,B future-trained (fat-tailed) vs A honest (fat-tailed),2.3003,-0.5806,5.0921,0.1275
+DAX,95%,A honest (fat-tailed) vs A honest,-0.1289,-1.0046,0.7296,0.7677
+DAX,95%,GARCH-t vs A honest (fat-tailed),5.0463,1.3077,8.9775,0.0174
+DAX,99%,C retrospective (fat-tailed) vs A honest (fat-tailed),25.4477,18.941,31.0232,0.0
+DAX,99%,B future-trained (fat-tailed) vs A honest (fat-tailed),10.5548,3.0505,17.5624,0.0244
+DAX,99%,A honest (fat-tailed) vs A honest,0.9455,-1.6846,4.2511,0.5391
+DAX,99%,GARCH-t vs A honest (fat-tailed),14.3672,6.1901,22.5849,0.0087

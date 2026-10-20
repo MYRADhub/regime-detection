@@ -73,20 +73,20 @@ Moving-block bootstrap, 20-day blocks, 2,000 resamples. * = Diebold-Mariano p < 
 
 Negative numbers mean the benchmark beats the honest HMM.
 
-## Table 6. Diebold-Mariano tests on quantile loss, S&P 500
+## Table 6. Diebold-Mariano tests on quantile loss, S&P 500, with Holm correction for 8 tests
 
-| VaR level   | Comparison                   |   DM statistic |   p-value |
-|:------------|:-----------------------------|---------------:|----------:|
-| 95%         | C retrospective vs A honest  |          -7.84 |    0      |
-| 95%         | B future-trained vs A honest |          -1.3  |    0.1923 |
-| 95%         | A honest vs Historical sim   |          -2.86 |    0.0043 |
-| 95%         | A honest vs GARCH-t          |           2.76 |    0.0059 |
-| 99%         | C retrospective vs A honest  |          -4.77 |    0      |
-| 99%         | B future-trained vs A honest |          -1.09 |    0.2778 |
-| 99%         | A honest vs Historical sim   |          -1.23 |    0.2203 |
-| 99%         | A honest vs GARCH-t          |           2    |    0.0458 |
+| VaR level   | comparison                   |   DM statistic |   p-value |   Holm-adjusted p |
+|:------------|:-----------------------------|---------------:|----------:|------------------:|
+| 95%         | C retrospective vs A honest  |        -7.8405 |    0      |            0      |
+| 95%         | B future-trained vs A honest |        -1.3037 |    0.1923 |            0.577  |
+| 95%         | A honest vs Historical sim   |        -2.8552 |    0.0043 |            0.0258 |
+| 95%         | A honest vs GARCH-t          |         2.756  |    0.0059 |            0.0293 |
+| 99%         | C retrospective vs A honest  |        -4.7691 |    0      |            0      |
+| 99%         | B future-trained vs A honest |        -1.0854 |    0.2778 |            0.577  |
+| 99%         | A honest vs Historical sim   |        -1.2258 |    0.2203 |            0.577  |
+| 99%         | A honest vs GARCH-t          |         1.9976 |    0.0458 |            0.183  |
 
-Negative statistic = the first model has lower loss.
+Negative statistic = the first model has lower loss. Holm-adjusted p controls for testing 8 comparisons.
 
 ## Table 7. Crisis vs calm periods, S&P 500
 
@@ -186,3 +186,66 @@ Onset = smoothed P(stormy) crosses 0.5 and stays above for 10+ days after 20+ ca
 | DAX        | 99%         |                     72 |                  22.79 |                                50.79 |                     35.92 |                 21.59 |
 
 Switch = smoothed P(stormy) crosses 0.5. Premium = % lower quantile loss of C than A.
+
+## Table 12. Fat-tailed HMM (each regime = actual distribution of past returns)
+
+| index      | method                       | VaR level   |   breach rate % |   Kupiec p |   quantile loss |
+|:-----------|:-----------------------------|:------------|----------------:|-----------:|----------------:|
+| S&P 500    | A honest                     | 95%         |          5.6975 |     0.0227 |          0.1379 |
+| S&P 500    | A honest                     | 99%         |          1.9496 |     0      |          0.0463 |
+| S&P 500    | A honest (fat-tailed)        | 95%         |          5.3757 |     0.2155 |          0.1373 |
+| S&P 500    | A honest (fat-tailed)        | 99%         |          1.7036 |     0      |          0.0454 |
+| S&P 500    | C retrospective (fat-tailed) | 95%         |          4.5997 |     0.1762 |          0.1177 |
+| S&P 500    | C retrospective (fat-tailed) | 99%         |          0.53   |     0.0002 |          0.0357 |
+| S&P 500    | GARCH-t                      | 95%         |          6.7765 |     0      |          0.1256 |
+| S&P 500    | GARCH-t                      | 99%         |          1.7793 |     0      |          0.0368 |
+| FTSE 100   | A honest                     | 95%         |          5.3366 |     0.2657 |          0.1231 |
+| FTSE 100   | A honest                     | 99%         |          1.5274 |     0.0003 |          0.0408 |
+| FTSE 100   | A honest (fat-tailed)        | 95%         |          5.1292 |     0.6673 |          0.1231 |
+| FTSE 100   | A honest (fat-tailed)        | 99%         |          1.3577 |     0.013  |          0.0407 |
+| FTSE 100   | C retrospective (fat-tailed) | 95%         |          4.1109 |     0.0022 |          0.1056 |
+| FTSE 100   | C retrospective (fat-tailed) | 99%         |          0.4714 |     0      |          0.0306 |
+| FTSE 100   | GARCH-t                      | 95%         |          6.0155 |     0.001  |          0.1162 |
+| FTSE 100   | GARCH-t                      | 99%         |          1.6029 |     0      |          0.035  |
+| Nikkei 225 | A honest                     | 95%         |          5.7026 |     0.0237 |          0.167  |
+| Nikkei 225 | A honest                     | 99%         |          1.6933 |     0      |          0.0551 |
+| Nikkei 225 | A honest (fat-tailed)        | 95%         |          5.4885 |     0.1135 |          0.1674 |
+| Nikkei 225 | A honest (fat-tailed)        | 99%         |          1.557  |     0.0002 |          0.0538 |
+| Nikkei 225 | C retrospective (fat-tailed) | 95%         |          4.2234 |     0.0088 |          0.1434 |
+| Nikkei 225 | C retrospective (fat-tailed) | 99%         |          0.4282 |     0      |          0.0414 |
+| Nikkei 225 | GARCH-t                      | 95%         |          6.2865 |     0      |          0.1598 |
+| Nikkei 225 | GARCH-t                      | 99%         |          1.5765 |     0.0001 |          0.0488 |
+| DAX        | A honest                     | 95%         |          5.9839 |     0.0014 |          0.1494 |
+| DAX        | A honest                     | 99%         |          1.632  |     0      |          0.048  |
+| DAX        | A honest (fat-tailed)        | 95%         |          5.4024 |     0.1831 |          0.1496 |
+| DAX        | A honest (fat-tailed)        | 99%         |          1.3693 |     0.0103 |          0.0476 |
+| DAX        | C retrospective (fat-tailed) | 95%         |          4.4645 |     0.0679 |          0.1277 |
+| DAX        | C retrospective (fat-tailed) | 99%         |          0.3939 |     0      |          0.0355 |
+| DAX        | GARCH-t                      | 95%         |          6.9218 |     0      |          0.1421 |
+| DAX        | GARCH-t                      | 99%         |          1.4256 |     0.0033 |          0.0407 |
+
+## Table 12b. Look-ahead premium and comparisons for the fat-tailed HMM (% lower loss, 95% CI)
+
+| index      | A honest (fat-tailed) vs A honest 95%   | A honest (fat-tailed) vs A honest 99%   | B future-trained (fat-tailed) vs A honest (fat-tailed) 95%   | B future-trained (fat-tailed) vs A honest (fat-tailed) 99%   | C retrospective (fat-tailed) vs A honest (fat-tailed) 95%   | C retrospective (fat-tailed) vs A honest (fat-tailed) 99%   | GARCH-t vs A honest (fat-tailed) 95%   | GARCH-t vs A honest (fat-tailed) 99%   |
+|:-----------|:----------------------------------------|:----------------------------------------|:-------------------------------------------------------------|:-------------------------------------------------------------|:------------------------------------------------------------|:------------------------------------------------------------|:---------------------------------------|:---------------------------------------|
+| DAX        | -0.1 [-1.0, 0.7]                        | 0.9 [-1.7, 4.3]                         | 2.3 [-0.6, 5.1]                                              | 10.6 [3.1, 17.6]*                                            | 14.7 [12.0, 17.3]*                                          | 25.4 [18.9, 31.0]*                                          | 5.0 [1.3, 9.0]*                        | 14.4 [6.2, 22.6]*                      |
+| FTSE 100   | -0.0 [-0.9, 0.8]                        | 0.3 [-1.6, 1.9]                         | 1.3 [-0.7, 3.4]                                              | 9.2 [2.0, 15.4]*                                             | 14.2 [11.6, 16.9]*                                          | 24.9 [19.1, 29.9]*                                          | 5.6 [1.3, 10.5]*                       | 13.9 [2.1, 25.2]                       |
+| Nikkei 225 | -0.2 [-0.9, 0.3]                        | 2.3 [-0.6, 5.0]                         | 2.5 [-0.1, 4.9]                                              | 8.2 [1.1, 13.8]*                                             | 14.3 [11.5, 17.1]*                                          | 23.0 [17.6, 27.4]*                                          | 4.6 [1.0, 9.0]*                        | 9.3 [-2.1, 21.9]                       |
+| S&P 500    | 0.5 [-0.5, 1.3]                         | 2.0 [-2.7, 6.0]                         | 1.4 [-1.3, 4.0]                                              | 6.3 [-2.7, 13.4]                                             | 14.2 [10.8, 17.6]*                                          | 21.2 [13.1, 27.9]*                                          | 8.5 [3.1, 14.2]*                       | 18.8 [4.1, 32.6]*                      |
+
+* = Diebold-Mariano p < 0.05.
+
+## Table 13. Look-ahead premium (C vs A, % lower loss, 95% CI) in four sub-periods
+
+| index      | VaR level   | 2005-2009         | 2010-2014         | 2015-2019         | 2020-2025         |
+|:-----------|:------------|:------------------|:------------------|:------------------|:------------------|
+| DAX        | 95%         | 13.2 [7.8, 17.8]  | 11.1 [5.0, 17.7]  | 14.1 [9.8, 17.7]  | 19.2 [14.2, 23.9] |
+| DAX        | 99%         | 26.6 [13.9, 35.4] | 17.5 [9.3, 25.3]  | 18.5 [10.8, 25.6] | 37.1 [28.8, 43.1] |
+| FTSE 100   | 95%         | 9.8 [4.5, 15.2]   | 14.5 [9.7, 19.2]  | 16.5 [11.5, 20.9] | 18.2 [12.2, 23.9] |
+| FTSE 100   | 99%         | 13.2 [2.0, 23.5]  | 16.7 [9.8, 24.0]  | 24.3 [14.8, 33.8] | 35.8 [26.5, 43.3] |
+| Nikkei 225 | 95%         | 14.5 [8.0, 19.9]  | 11.7 [6.6, 16.8]  | 15.9 [10.2, 22.2] | 17.5 [12.3, 22.4] |
+| Nikkei 225 | 99%         | 25.9 [14.1, 33.8] | 10.8 [1.5, 20.4]  | 30.7 [21.3, 38.9] | 27.2 [17.4, 34.6] |
+| S&P 500    | 95%         | 11.2 [2.6, 19.6]  | 16.8 [9.8, 22.3]  | 16.7 [8.4, 22.8]  | 17.2 [12.5, 22.4] |
+| S&P 500    | 99%         | 13.9 [-6.9, 30.7] | 21.2 [10.3, 30.5] | 27.2 [12.9, 39.9] | 23.3 [16.6, 31.9] |
+
+Normal-emission HMM. The fat-tailed version gives similar numbers (results/subperiod_premium.csv).

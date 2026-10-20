@@ -1,0 +1,65 @@
+method,VaR level,days,breach rate %,target %,Kupiec p,Christoffersen p,quantile loss,index
+A honest,95%,5283,5.6975,5.0,0.0227,0.0366,0.1379,S&P 500
+A honest,99%,5283,1.9496,1.0,0.0,0.0,0.0463,S&P 500
+B future-trained,95%,5283,5.9625,5.0,0.0018,0.0076,0.1351,S&P 500
+B future-trained,99%,5283,1.8171,1.0,0.0,0.0,0.0444,S&P 500
+C retrospective,95%,5283,4.4861,5.0,0.0813,0.1282,0.1168,S&P 500
+C retrospective,99%,5283,1.0032,1.0,0.9813,0.0079,0.0368,S&P 500
+A honest (fat-tailed),95%,5283,5.3757,5.0,0.2155,0.1059,0.1373,S&P 500
+A honest (fat-tailed),99%,5283,1.7036,1.0,0.0,0.0,0.0454,S&P 500
+B future-trained (fat-tailed),95%,5283,5.9436,5.0,0.0022,0.0085,0.1353,S&P 500
+B future-trained (fat-tailed),99%,5283,1.4764,1.0,0.0012,0.0001,0.0425,S&P 500
+C retrospective (fat-tailed),95%,5283,4.5997,5.0,0.1762,0.2782,0.1177,S&P 500
+C retrospective (fat-tailed),99%,5283,0.53,1.0,0.0002,0.0,0.0357,S&P 500
+Historical sim,95%,5283,5.4893,5.0,0.1079,0.0,0.1459,S&P 500
+Historical sim,99%,5283,1.7793,1.0,0.0,0.0,0.0491,S&P 500
+GARCH-t,95%,5283,6.7765,5.0,0.0,0.0,0.1256,S&P 500
+GARCH-t,99%,5283,1.7793,1.0,0.0,0.0,0.0368,S&P 500
+A honest,95%,5303,5.3366,5.0,0.2657,0.0247,0.1231,FTSE 100
+A honest,99%,5303,1.5274,1.0,0.0003,0.0,0.0408,FTSE 100
+B future-trained,95%,5303,5.4875,5.0,0.1086,0.0231,0.1215,FTSE 100
+B future-trained,99%,5303,1.4332,1.0,0.0029,0.0037,0.0381,FTSE 100
+C retrospective,95%,5303,4.2052,5.0,0.0064,0.0029,0.1052,FTSE 100
+C retrospective,99%,5303,0.6977,1.0,0.0193,0.0057,0.0313,FTSE 100
+A honest (fat-tailed),95%,5303,5.1292,5.0,0.6673,0.0567,0.1231,FTSE 100
+A honest (fat-tailed),99%,5303,1.3577,1.0,0.013,0.0006,0.0407,FTSE 100
+B future-trained (fat-tailed),95%,5303,5.5063,5.0,0.0958,0.0224,0.1215,FTSE 100
+B future-trained (fat-tailed),99%,5303,1.2257,1.0,0.1106,0.2732,0.037,FTSE 100
+C retrospective (fat-tailed),95%,5303,4.1109,5.0,0.0022,0.0038,0.1056,FTSE 100
+C retrospective (fat-tailed),99%,5303,0.4714,1.0,0.0,0.0,0.0306,FTSE 100
+Historical sim,95%,5303,5.5817,5.0,0.0562,0.0,0.1311,FTSE 100
+Historical sim,99%,5303,1.7537,1.0,0.0,0.0,0.0428,FTSE 100
+GARCH-t,95%,5303,6.0155,5.0,0.001,0.0001,0.1162,FTSE 100
+GARCH-t,99%,5303,1.6029,1.0,0.0,0.0,0.035,FTSE 100
+A honest,95%,5138,5.7026,5.0,0.0237,0.0232,0.167,Nikkei 225
+A honest,99%,5138,1.6933,1.0,0.0,0.0,0.0551,Nikkei 225
+B future-trained,95%,5138,5.4107,5.0,0.1823,0.4109,0.1631,Nikkei 225
+B future-trained,99%,5138,1.4013,1.0,0.0064,0.0064,0.0504,Nikkei 225
+C retrospective,95%,5138,4.2818,5.0,0.0156,0.0248,0.142,Nikkei 225
+C retrospective,99%,5138,0.5255,1.0,0.0002,0.0,0.0418,Nikkei 225
+A honest (fat-tailed),95%,5138,5.4885,5.0,0.1135,0.072,0.1674,Nikkei 225
+A honest (fat-tailed),99%,5138,1.557,1.0,0.0002,0.0,0.0538,Nikkei 225
+B future-trained (fat-tailed),95%,5138,5.1771,5.0,0.5624,0.8438,0.1632,Nikkei 225
+B future-trained (fat-tailed),99%,5138,1.304,1.0,0.0364,0.0217,0.0494,Nikkei 225
+C retrospective (fat-tailed),95%,5138,4.2234,5.0,0.0088,0.0238,0.1434,Nikkei 225
+C retrospective (fat-tailed),99%,5138,0.4282,1.0,0.0,0.0,0.0414,Nikkei 225
+Historical sim,95%,5138,5.4691,5.0,0.1283,0.0,0.1731,Nikkei 225
+Historical sim,99%,5138,1.7127,1.0,0.0,0.0,0.0595,Nikkei 225
+GARCH-t,95%,5138,6.2865,5.0,0.0,0.0001,0.1598,Nikkei 225
+GARCH-t,99%,5138,1.5765,1.0,0.0001,0.0003,0.0488,Nikkei 225
+A honest,95%,5331,5.9839,5.0,0.0014,0.0039,0.1494,DAX
+A honest,99%,5331,1.632,1.0,0.0,0.0,0.048,DAX
+B future-trained,95%,5331,5.8713,5.0,0.0045,0.0146,0.1471,DAX
+B future-trained,99%,5331,1.5194,1.0,0.0004,0.0005,0.0432,DAX
+C retrospective,95%,5331,4.7083,5.0,0.3239,0.2877,0.1274,DAX
+C retrospective,99%,5331,0.8629,1.0,0.3028,0.394,0.035,DAX
+A honest (fat-tailed),95%,5331,5.4024,5.0,0.1831,0.1083,0.1496,DAX
+A honest (fat-tailed),99%,5331,1.3693,1.0,0.0103,0.0096,0.0476,DAX
+B future-trained (fat-tailed),95%,5331,5.7025,5.0,0.0212,0.0701,0.1462,DAX
+B future-trained (fat-tailed),99%,5331,1.1818,1.0,0.1948,0.2031,0.0426,DAX
+C retrospective (fat-tailed),95%,5331,4.4645,5.0,0.0679,0.088,0.1277,DAX
+C retrospective (fat-tailed),99%,5331,0.3939,1.0,0.0,0.0,0.0355,DAX
+Historical sim,95%,5331,6.0214,5.0,0.0009,0.0,0.1561,DAX
+Historical sim,99%,5331,1.6882,1.0,0.0,0.0,0.0489,DAX
+GARCH-t,95%,5331,6.9218,5.0,0.0,0.0,0.1421,DAX
+GARCH-t,99%,5331,1.4256,1.0,0.0033,0.0098,0.0407,DAX

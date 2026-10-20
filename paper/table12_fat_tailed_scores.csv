@@ -1,0 +1,33 @@
+index,method,VaR level,breach rate %,Kupiec p,quantile loss
+S&P 500,A honest,95%,5.6975,0.0227,0.1379
+S&P 500,A honest,99%,1.9496,0.0,0.0463
+S&P 500,A honest (fat-tailed),95%,5.3757,0.2155,0.1373
+S&P 500,A honest (fat-tailed),99%,1.7036,0.0,0.0454
+S&P 500,C retrospective (fat-tailed),95%,4.5997,0.1762,0.1177
+S&P 500,C retrospective (fat-tailed),99%,0.53,0.0002,0.0357
+S&P 500,GARCH-t,95%,6.7765,0.0,0.1256
+S&P 500,GARCH-t,99%,1.7793,0.0,0.0368
+FTSE 100,A honest,95%,5.3366,0.2657,0.1231
+FTSE 100,A honest,99%,1.5274,0.0003,0.0408
+FTSE 100,A honest (fat-tailed),95%,5.1292,0.6673,0.1231
+FTSE 100,A honest (fat-tailed),99%,1.3577,0.013,0.0407
+FTSE 100,C retrospective (fat-tailed),95%,4.1109,0.0022,0.1056
+FTSE 100,C retrospective (fat-tailed),99%,0.4714,0.0,0.0306
+FTSE 100,GARCH-t,95%,6.0155,0.001,0.1162
+FTSE 100,GARCH-t,99%,1.6029,0.0,0.035
+Nikkei 225,A honest,95%,5.7026,0.0237,0.167
+Nikkei 225,A honest,99%,1.6933,0.0,0.0551
+Nikkei 225,A honest (fat-tailed),95%,5.4885,0.1135,0.1674
+Nikkei 225,A honest (fat-tailed),99%,1.557,0.0002,0.0538
+Nikkei 225,C retrospective (fat-tailed),95%,4.2234,0.0088,0.1434
+Nikkei 225,C retrospective (fat-tailed),99%,0.4282,0.0,0.0414
+Nikkei 225,GARCH-t,95%,6.2865,0.0,0.1598
+Nikkei 225,GARCH-t,99%,1.5765,0.0001,0.0488
+DAX,A honest,95%,5.9839,0.0014,0.1494
+DAX,A honest,99%,1.632,0.0,0.048
+DAX,A honest (fat-tailed),95%,5.4024,0.1831,0.1496
+DAX,A honest (fat-tailed),99%,1.3693,0.0103,0.0476
+DAX,C retrospective (fat-tailed),95%,4.4645,0.0679,0.1277
+DAX,C retrospective (fat-tailed),99%,0.3939,0.0,0.0355
+DAX,GARCH-t,95%,6.9218,0.0,0.1421
+DAX,GARCH-t,99%,1.4256,0.0033,0.0407

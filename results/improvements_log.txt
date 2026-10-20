@@ -1,0 +1,105 @@
+done: S&P 500
+done: FTSE 100
+done: Nikkei 225
+done: DAX
+VaR level                   comparison  DM statistic  p-value  Holm-adjusted p
+      95%  C retrospective vs A honest       -7.8405   0.0000           0.0000
+      95% B future-trained vs A honest       -1.3037   0.1923           0.5770
+      95%   A honest vs Historical sim       -2.8552   0.0043           0.0258
+      95%          A honest vs GARCH-t        2.7560   0.0059           0.0293
+      99%  C retrospective vs A honest       -4.7691   0.0000           0.0000
+      99% B future-trained vs A honest       -1.0854   0.2778           0.5770
+      99%   A honest vs Historical sim       -1.2258   0.2203           0.5770
+      99%          A honest vs GARCH-t        1.9976   0.0458           0.1830
+     index                        method VaR level  breach rate %  Kupiec p  quantile loss
+   S&P 500                      A honest       95%          5.698     0.023          0.138
+   S&P 500                      A honest       99%          1.950     0.000          0.046
+   S&P 500         A honest (fat-tailed)       95%          5.376     0.215          0.137
+   S&P 500         A honest (fat-tailed)       99%          1.704     0.000          0.045
+   S&P 500 B future-trained (fat-tailed)       95%          5.944     0.002          0.135
+   S&P 500 B future-trained (fat-tailed)       99%          1.476     0.001          0.043
+   S&P 500  C retrospective (fat-tailed)       95%          4.600     0.176          0.118
+   S&P 500  C retrospective (fat-tailed)       99%          0.530     0.000          0.036
+   S&P 500                       GARCH-t       95%          6.776     0.000          0.126
+   S&P 500                       GARCH-t       99%          1.779     0.000          0.037
+  FTSE 100                      A honest       95%          5.337     0.266          0.123
+  FTSE 100                      A honest       99%          1.527     0.000          0.041
+  FTSE 100         A honest (fat-tailed)       95%          5.129     0.667          0.123
+  FTSE 100         A honest (fat-tailed)       99%          1.358     0.013          0.041
+  FTSE 100 B future-trained (fat-tailed)       95%          5.506     0.096          0.121
+  FTSE 100 B future-trained (fat-tailed)       99%          1.226     0.111          0.037
+  FTSE 100  C retrospective (fat-tailed)       95%          4.111     0.002          0.106
+  FTSE 100  C retrospective (fat-tailed)       99%          0.471     0.000          0.031
+  FTSE 100                       GARCH-t       95%          6.015     0.001          0.116
+  FTSE 100                       GARCH-t       99%          1.603     0.000          0.035
+Nikkei 225                      A honest       95%          5.703     0.024          0.167
+Nikkei 225                      A honest       99%          1.693     0.000          0.055
+Nikkei 225         A honest (fat-tailed)       95%          5.489     0.113          0.167
+Nikkei 225         A honest (fat-tailed)       99%          1.557     0.000          0.054
+Nikkei 225 B future-trained (fat-tailed)       95%          5.177     0.562          0.163
+Nikkei 225 B future-trained (fat-tailed)       99%          1.304     0.036          0.049
+Nikkei 225  C retrospective (fat-tailed)       95%          4.223     0.009          0.143
+Nikkei 225  C retrospective (fat-tailed)       99%          0.428     0.000          0.041
+Nikkei 225                       GARCH-t       95%          6.286     0.000          0.160
+Nikkei 225                       GARCH-t       99%          1.576     0.000          0.049
+       DAX                      A honest       95%          5.984     0.001          0.149
+       DAX                      A honest       99%          1.632     0.000          0.048
+       DAX         A honest (fat-tailed)       95%          5.402     0.183          0.150
+       DAX         A honest (fat-tailed)       99%          1.369     0.010          0.048
+       DAX B future-trained (fat-tailed)       95%          5.702     0.021          0.146
+       DAX B future-trained (fat-tailed)       99%          1.182     0.195          0.043
+       DAX  C retrospective (fat-tailed)       95%          4.464     0.068          0.128
+       DAX  C retrospective (fat-tailed)       99%          0.394     0.000          0.035
+       DAX                       GARCH-t       95%          6.922     0.000          0.142
+       DAX                       GARCH-t       99%          1.426     0.003          0.041
+     index VaR level                                             comparison  loss reduction %  95% CI low  95% CI high  DM p-value
+   S&P 500       95%  C retrospective (fat-tailed) vs A honest (fat-tailed)             14.22       10.84        17.56        0.00
+   S&P 500       95% B future-trained (fat-tailed) vs A honest (fat-tailed)              1.44       -1.31         3.97        0.29
+   S&P 500       95%                      A honest (fat-tailed) vs A honest              0.46       -0.52         1.33        0.35
+   S&P 500       95%                       GARCH-t vs A honest (fat-tailed)              8.52        3.05        14.16        0.01
+   S&P 500       99%  C retrospective (fat-tailed) vs A honest (fat-tailed)             21.21       13.12        27.94        0.00
+   S&P 500       99% B future-trained (fat-tailed) vs A honest (fat-tailed)              6.29       -2.72        13.40        0.15
+   S&P 500       99%                      A honest (fat-tailed) vs A honest              2.04       -2.69         6.04        0.40
+   S&P 500       99%                       GARCH-t vs A honest (fat-tailed)             18.81        4.08        32.57        0.04
+  FTSE 100       95%  C retrospective (fat-tailed) vs A honest (fat-tailed)             14.23       11.56        16.87        0.00
+  FTSE 100       95% B future-trained (fat-tailed) vs A honest (fat-tailed)              1.34       -0.70         3.44        0.23
+  FTSE 100       95%                      A honest (fat-tailed) vs A honest             -0.03       -0.87         0.78        0.94
+  FTSE 100       95%                       GARCH-t vs A honest (fat-tailed)              5.64        1.30        10.47        0.03
+  FTSE 100       99%  C retrospective (fat-tailed) vs A honest (fat-tailed)             24.87       19.15        29.86        0.00
+  FTSE 100       99% B future-trained (fat-tailed) vs A honest (fat-tailed)              9.16        2.04        15.35        0.03
+  FTSE 100       99%                      A honest (fat-tailed) vs A honest              0.27       -1.59         1.87        0.76
+  FTSE 100       99%                       GARCH-t vs A honest (fat-tailed)             13.91        2.09        25.25        0.06
+Nikkei 225       95%  C retrospective (fat-tailed) vs A honest (fat-tailed)             14.34       11.49        17.08        0.00
+Nikkei 225       95% B future-trained (fat-tailed) vs A honest (fat-tailed)              2.50       -0.08         4.92        0.06
+Nikkei 225       95%                      A honest (fat-tailed) vs A honest             -0.24       -0.86         0.29        0.41
+Nikkei 225       95%                       GARCH-t vs A honest (fat-tailed)              4.55        0.95         9.03        0.05
+Nikkei 225       99%  C retrospective (fat-tailed) vs A honest (fat-tailed)             23.01       17.60        27.45        0.00
+Nikkei 225       99% B future-trained (fat-tailed) vs A honest (fat-tailed)              8.24        1.10        13.80        0.03
+Nikkei 225       99%                      A honest (fat-tailed) vs A honest              2.32       -0.60         5.01        0.16
+Nikkei 225       99%                       GARCH-t vs A honest (fat-tailed)              9.31       -2.09        21.94        0.20
+       DAX       95%  C retrospective (fat-tailed) vs A honest (fat-tailed)             14.68       11.99        17.29        0.00
+       DAX       95% B future-trained (fat-tailed) vs A honest (fat-tailed)              2.30       -0.58         5.09        0.13
+       DAX       95%                      A honest (fat-tailed) vs A honest             -0.13       -1.00         0.73        0.77
+       DAX       95%                       GARCH-t vs A honest (fat-tailed)              5.05        1.31         8.98        0.02
+       DAX       99%  C retrospective (fat-tailed) vs A honest (fat-tailed)             25.45       18.94        31.02        0.00
+       DAX       99% B future-trained (fat-tailed) vs A honest (fat-tailed)             10.55        3.05        17.56        0.02
+       DAX       99%                      A honest (fat-tailed) vs A honest              0.95       -1.68         4.25        0.54
+       DAX       99%                       GARCH-t vs A honest (fat-tailed)             14.37        6.19        22.58        0.01
+period                           2005-2009  2010-2014  2015-2019  2020-2025
+index      model      VaR level                                            
+DAX        fat-tailed 95%             14.7       11.4       14.1       17.6
+                      99%             22.9       19.1       15.6       36.1
+           normal     95%             13.2       11.1       14.1       19.2
+                      99%             26.6       17.5       18.5       37.1
+FTSE 100   fat-tailed 95%              9.4       15.4       16.3       16.9
+                      99%             18.8       15.5       21.4       36.8
+           normal     95%              9.8       14.5       16.5       18.2
+                      99%             13.2       16.7       24.3       35.8
+Nikkei 225 fat-tailed 95%             12.8       13.3       14.7       16.6
+                      99%             24.5       10.7       25.8       28.2
+           normal     95%             14.5       11.7       15.9       17.5
+                      99%             25.9       10.8       30.7       27.2
+S&P 500    fat-tailed 95%             10.7       18.0       16.3       13.9
+                      99%             15.0       22.1       20.4       26.3
+           normal     95%             11.2       16.8       16.7       17.2
+                      99%             13.9       21.2       27.2       23.3

@@ -170,6 +170,35 @@ def test_premium_ci_covers_zero_when_there_is_no_gap():
     assert lo < 0 < hi
 
 
+# --- fat-tailed (empirical) regime distributions --------------------------------
+
+
+def test_weighted_quantile_matches_plain_quantile_with_equal_weights():
+    rng = np.random.default_rng(5)
+    x = rng.normal(size=1000)
+    q = rv.weighted_quantile(x, np.ones(1000), 0.05)
+    assert q == np.sort(x)[49]
+
+
+def test_empirical_honest_version_ignores_the_future(returns):
+    start, check_day = returns.index[300], returns.index[450]
+    kw = dict(window=300, refit_every=40, emission="empirical")
+    original = rv.hmm_var_rolling(returns, start, **kw)
+    altered = rv.hmm_var_rolling(_scramble_after(returns, check_day), start, **kw)
+    pd.testing.assert_frame_equal(original.loc[:check_day], altered.loc[:check_day])
+    changed = returns.copy()
+    changed[check_day] = -20.0
+    assert rv.hmm_var_rolling(changed, start, **kw).loc[check_day].equals(original.loc[check_day])
+
+
+def test_empirical_versions_produce_valid_var(returns):
+    start = returns.index[300]
+    normal = rv.hmm_var_full_sample(returns, start)
+    empirical = rv.hmm_var_full_sample(returns, start, emission="empirical")
+    assert empirical.notna().all().all()
+    assert (empirical["q1"] < empirical["q5"]).all()
+
+
 # --- Basel traffic light and detection delay -----------------------------------
 
 

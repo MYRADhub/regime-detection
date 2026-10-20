@@ -124,6 +124,22 @@ def mixture_quantile(alpha_level, weights, means, sds):
     return optimize.brentq(cdf_gap, lo, hi)
 
 
+def weighted_quantile(values, weights, alpha):
+    """Smallest value whose cumulative weight reaches alpha."""
+    order = np.argsort(values)
+    v, w = np.asarray(values)[order], np.asarray(weights)[order]
+    cum = np.cumsum(w) / w.sum()
+    return v[min(np.searchsorted(cum, alpha), len(v) - 1)]
+
+
+def _empirical_quantiles(weights, train_x, train_gamma, alphas):
+    """Fat-tailed VaR: each regime is the actual distribution of training returns,
+    weighted by how likely each training day was to belong to that regime."""
+    per_regime = train_gamma / train_gamma.sum(axis=0, keepdims=True)  # n_train x K
+    obs_weights = per_regime @ np.asarray(weights).T  # n_train x n_days
+    return np.array([[weighted_quantile(train_x, obs_weights[:, i], a) for a in alphas] for i in range(len(weights))])
+
+
 def _quantiles_from_weights(weights, means, sds, alphas):
     out = np.empty((len(weights), len(alphas)))
     for i, w in enumerate(weights):
@@ -137,7 +153,7 @@ def _quantiles_from_weights(weights, means, sds, alphas):
 # ---------------------------------------------------------------------------
 
 
-def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=False, n_regimes=2, seed=0, smoothed_lag=False):
+def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=False, n_regimes=2, seed=0, smoothed_lag=False, emission="normal"):
     """Versions B and C: fit the HMM once on ALL data (deliberately biased).
 
     smoothed=False -> Version B: the regime weights for day t are the filtered
@@ -164,11 +180,15 @@ def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=F
         weights_all = np.vstack([startprob, predictive[:-1]])
 
     mask = returns.index >= pd.Timestamp(forecast_start)
-    q = _quantiles_from_weights(weights_all[mask], means, sds, alphas)
+    if emission == "empirical":
+        gamma = model.predict_proba(x.reshape(-1, 1))
+        q = _empirical_quantiles(weights_all[mask], x, gamma, alphas)
+    else:
+        q = _quantiles_from_weights(weights_all[mask], means, sds, alphas)
     return _as_frame(q, returns.index[mask], alphas)
 
 
-def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2, seed=0, return_probs=False):
+def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2, seed=0, return_probs=False, emission="normal"):
     """Version A (honest): only past data is ever used.
 
     Every `refit_every` days the HMM is refit on the last `window` returns.
@@ -198,7 +218,12 @@ def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, r
         alpha = filtered_probs(seen, means, sds, transmat, startprob)
         predictive = alpha @ transmat
         weights = predictive[window - 1 :]  # one row per forecast day in the block
-        q_all.append(_quantiles_from_weights(weights, means, sds, alphas))
+        if emission == "empirical":
+            # Regime membership of the TRAINING days only (all before the block).
+            gamma = model.predict_proba(train.reshape(-1, 1))
+            q_all.append(_empirical_quantiles(weights, train, gamma, alphas))
+        else:
+            q_all.append(_quantiles_from_weights(weights, means, sds, alphas))
         stormy.append(weights[:, -1])
 
     q = _as_frame(np.vstack(q_all), index[first:], alphas)
