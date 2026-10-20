@@ -1,0 +1,21 @@
+Period,Days,VaR level,Method,Quantile loss,% lower than A
+Crisis,554,95%,A honest,0.3674,0.0
+Crisis,554,95%,B future-trained,0.3443,6.3
+Crisis,554,95%,C retrospective,0.3312,9.9
+Crisis,554,95%,Historical sim,0.374,-1.8
+Crisis,554,95%,GARCH-t,0.2784,24.2
+Crisis,554,99%,A honest,0.1589,0.0
+Crisis,554,99%,B future-trained,0.1475,7.2
+Crisis,554,99%,C retrospective,0.1417,10.9
+Crisis,554,99%,Historical sim,0.1433,9.8
+Crisis,554,99%,GARCH-t,0.0767,51.7
+Calm,4729,95%,A honest,0.111,0.0
+Calm,4729,95%,B future-trained,0.1105,0.4
+Calm,4729,95%,C retrospective,0.0917,17.4
+Calm,4729,95%,Historical sim,0.1192,-7.3
+Calm,4729,95%,GARCH-t,0.1077,3.0
+Calm,4729,99%,A honest,0.0331,0.0
+Calm,4729,99%,B future-trained,0.0323,2.5
+Calm,4729,99%,C retrospective,0.0246,25.9
+Calm,4729,99%,Historical sim,0.0381,-15.0
+Calm,4729,99%,GARCH-t,0.0322,2.9
