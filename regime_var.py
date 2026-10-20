@@ -168,12 +168,15 @@ def hmm_var_full_sample(returns, forecast_start, alphas=(0.05, 0.01), smoothed=F
     return _as_frame(q, returns.index[mask], alphas)
 
 
-def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2, seed=0):
+def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, refit_every=21, n_regimes=2, seed=0, return_probs=False):
     """Version A (honest): only past data is ever used.
 
     Every `refit_every` days the HMM is refit on the last `window` returns.
     Between refits the parameters stay fixed, and each day's regime weights
     come from the forward filter run up to the day before.
+
+    return_probs=True also returns the forecast probability of the stormiest
+    regime for each day (what the honest model believed that morning).
     """
     x = returns.to_numpy()
     index = returns.index
@@ -181,7 +184,7 @@ def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, r
     if first < window:
         raise ValueError("forecast_start leaves fewer than `window` days of history")
 
-    q_all = []
+    q_all, stormy = [], []
     for block_start in range(first, len(x), refit_every):
         block_end = min(block_start + refit_every, len(x))
         train = x[block_start - window : block_start]
@@ -196,9 +199,12 @@ def hmm_var_rolling(returns, forecast_start, alphas=(0.05, 0.01), window=1000, r
         predictive = alpha @ transmat
         weights = predictive[window - 1 :]  # one row per forecast day in the block
         q_all.append(_quantiles_from_weights(weights, means, sds, alphas))
+        stormy.append(weights[:, -1])
 
-    q = np.vstack(q_all)
-    return _as_frame(q, index[first:], alphas)
+    q = _as_frame(np.vstack(q_all), index[first:], alphas)
+    if return_probs:
+        return q, pd.Series(np.concatenate(stormy), index=index[first:], name="p_stormy")
+    return q
 
 
 def _as_frame(q, index, alphas):
@@ -307,6 +313,45 @@ def diebold_mariano(loss_a, loss_b, lags=None):
         var += 2 * w * np.dot(d_c[k:], d_c[:-k]) / n
     stat = d.mean() / np.sqrt(var / n)
     return stat, 2 * (1 - stats.norm.cdf(abs(stat)))
+
+
+BASEL_PLUS_FACTOR = {5: 0.40, 6: 0.50, 7: 0.65, 8: 0.75, 9: 0.85}
+
+
+def basel_zones(hits, window=250):
+    """Basel traffic light for 99% VaR, evaluated on every rolling 250-day window.
+
+    Returns a DataFrame with the breach count, zone (green 0-4, yellow 5-9,
+    red 10+) and capital multiplier (3 + plus factor) for each window end.
+    """
+    hits = pd.Series(np.asarray(hits))
+    counts = hits.rolling(window).sum().dropna().astype(int)
+    zone = np.where(counts <= 4, "green", np.where(counts <= 9, "yellow", "red"))
+    plus = [0.0 if c <= 4 else BASEL_PLUS_FACTOR.get(c, 1.0) for c in counts]
+    return pd.DataFrame({"breaches": counts.to_numpy(), "zone": zone, "multiplier": 3 + np.array(plus)})
+
+
+def stormy_onsets(p_stormy, threshold=0.5, min_stay=10, min_gap=20):
+    """Days where a stormy episode starts: p crosses `threshold` and stays above
+    it for at least `min_stay` days, after at least `min_gap` calm days."""
+    p = np.asarray(p_stormy)
+    above = p >= threshold
+    onsets = []
+    for t in range(min_gap, len(p) - min_stay):
+        if above[t] and not above[t - 1] and above[t : t + min_stay].all() and not above[t - min_gap : t].any():
+            onsets.append(t)
+    return onsets
+
+
+def detection_delays(p_reference, p_realtime, threshold=0.5, max_delay=60, **kwargs):
+    """For each stormy onset in the reference (hindsight) series, how many days
+    until the real-time series also crosses the threshold (capped at max_delay)."""
+    ref, rt = np.asarray(p_reference), np.asarray(p_realtime)
+    delays = []
+    for t in stormy_onsets(ref, threshold, **kwargs):
+        later = np.flatnonzero(rt[t : t + max_delay + 1] >= threshold)
+        delays.append(int(later[0]) if len(later) else max_delay)
+    return delays
 
 
 def premium_with_ci(loss_honest, loss_biased, block=20, n_boot=2000, level=0.95, seed=0):

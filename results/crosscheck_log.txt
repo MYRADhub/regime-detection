@@ -1,0 +1,23 @@
+GARCH t-quantile max difference: 4.440892098500626e-16
+GARCH volatility recursion max difference: 1.1102230246251565e-16
+ours         q5: C vs A 15.3%   B vs A 2.1%
+ours         q1: C vs A 20.5%   B vs A 4.2%
+independent  q5: C vs A 15.8%   B vs A 2.7%
+independent  q1: C vs A 21.6%   B vs A 5.5%
+                               implementation           method VaR level  breach rate %  Kupiec p  quantile loss
+          ours (hmmlearn EM; GARCH refit 21d)         A honest       95%         5.6975    0.0227         0.1379
+          ours (hmmlearn EM; GARCH refit 21d)         A honest       99%         1.9496    0.0000         0.0463
+          ours (hmmlearn EM; GARCH refit 21d) B future-trained       95%         5.9625    0.0018         0.1351
+          ours (hmmlearn EM; GARCH refit 21d) B future-trained       99%         1.8171    0.0000         0.0444
+          ours (hmmlearn EM; GARCH refit 21d)  C retrospective       95%         4.4861    0.0813         0.1168
+          ours (hmmlearn EM; GARCH refit 21d)  C retrospective       99%         1.0032    0.9813         0.0368
+          ours (hmmlearn EM; GARCH refit 21d)          GARCH-t       95%         6.7765    0.0000         0.1256
+          ours (hmmlearn EM; GARCH refit 21d)          GARCH-t       99%         1.7793    0.0000         0.0368
+independent (statsmodels MLE; GARCH refit 5d)         A honest       95%         5.8489    0.0058         0.1388
+independent (statsmodels MLE; GARCH refit 5d)         A honest       99%         2.0632    0.0000         0.0469
+independent (statsmodels MLE; GARCH refit 5d) B future-trained       95%         5.9625    0.0018         0.1351
+independent (statsmodels MLE; GARCH refit 5d) B future-trained       99%         1.7793    0.0000         0.0443
+independent (statsmodels MLE; GARCH refit 5d)  C retrospective       95%         4.4672    0.0706         0.1168
+independent (statsmodels MLE; GARCH refit 5d)  C retrospective       99%         1.0032    0.9813         0.0368
+independent (statsmodels MLE; GARCH refit 5d)          GARCH-t       95%         6.7575    0.0000         0.1254
+independent (statsmodels MLE; GARCH refit 5d)          GARCH-t       99%         1.7982    0.0000         0.0367

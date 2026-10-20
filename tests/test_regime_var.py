@@ -170,6 +170,39 @@ def test_premium_ci_covers_zero_when_there_is_no_gap():
     assert lo < 0 < hi
 
 
+# --- Basel traffic light and detection delay -----------------------------------
+
+
+def test_basel_zones_boundaries():
+    hits = np.zeros(260, dtype=int)
+    hits[:4] = 1  # 4 breaches in the first window -> green
+    z = rv.basel_zones(hits)
+    assert z.loc[0, "zone"] == "green" and z.loc[0, "multiplier"] == 3.0
+    hits[4:6] = 1  # 6 breaches -> yellow, plus factor 0.5
+    z = rv.basel_zones(hits)
+    assert z.loc[0, "zone"] == "yellow" and z.loc[0, "multiplier"] == pytest.approx(3.5)
+    hits[6:12] = 1  # 12 breaches -> red, multiplier 4
+    z = rv.basel_zones(hits)
+    assert z.loc[0, "zone"] == "red" and z.loc[0, "multiplier"] == 4.0
+    assert len(z) == 260 - 250 + 1
+
+
+def test_detection_delay_counts_days_until_realtime_catches_up():
+    ref = np.zeros(200)
+    ref[100:150] = 1.0  # hindsight says the storm starts on day 100
+    rt = np.zeros(200)
+    rt[107:150] = 1.0  # real time only notices on day 107
+    assert rv.stormy_onsets(ref) == [100]
+    assert rv.detection_delays(ref, rt) == [7]
+    assert rv.detection_delays(ref, np.zeros(200), max_delay=60) == [60]
+
+
+def test_rolling_can_return_stormy_probabilities(returns):
+    q, p = rv.hmm_var_rolling(returns, returns.index[300], window=300, refit_every=40, return_probs=True)
+    assert p.index.equals(q.index)
+    assert ((p >= 0) & (p <= 1)).all()
+
+
 # --- shapes ------------------------------------------------------------------
 
 

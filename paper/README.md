@@ -13,6 +13,7 @@ write yourselves (NHSJS does not allow AI-written prose). Facts each caption sho
 | `figure1_regime_probabilities` | Top: S&P 500 daily returns 2007-2010. Bottom: probability of the stormy regime, filtered (blue) vs smoothed (orange) | 2-regime Gaussian HMM fitted on 1990-2025 for illustration only; filtered uses data up to each day, smoothed uses all data |
 | `figure2_var_2008` | 99% VaR of Version A (blue) and Version C (orange) over daily returns (grey), Jun 2007-Dec 2009 | Version A refits every 21 days on 1,000 past days; C is deliberately biased |
 | `figure3_premium_by_index` | % lower quantile loss than Version A, C (orange) and B (blue), four indices, 95% and 99% VaR | Dots = estimate, lines = 95% moving-block bootstrap CI (20-day blocks, 2,000 resamples); forecast period 2005-2025 |
+| `figure5_basel_zones` | Share of rolling 250-day windows in the Basel green/yellow/red zone, 99% VaR, S&P 500, per method | Green 0-4, yellow 5-9, red 10+ breaches per 250 days; 5,034 windows |
 | `figure4_breach_timeline` | Days the S&P 500 loss exceeded the 99% VaR, per method; breach rate at right | 5,283 forecast days, 2005-2025; target breach rate 1% |
 
 ## Tables (`tables.md` for reading, CSV files to build Word tables)
@@ -27,6 +28,14 @@ write yourselves (NHSJS does not allow AI-written prose). Facts each caption sho
 | `table6_diebold_mariano` | Diebold-Mariano tests, S&P 500 |
 | `table7_crisis_vs_calm` | Crisis vs calm periods, S&P 500 |
 | `table8_robustness` | Window length, seeds, 3 regimes |
+| `table9_basel_traffic_light` | Basel zones per method, 4 indices (made by `run_extras.py`) |
+| `table10_detection_delay` | Days until the honest model notices a stormy regime |
+| `table11_premium_near_switches` | Share of the premium from the 20 days after regime switches |
 
-NHSJS needs at least 5 figures or tables in total. Suggested main text: Figures 1-3, Tables 1, 3, 4, 5.
+NHSJS needs at least 5 figures or tables in total. Suggested main text: Figures 1, 3, 5 and Tables 1, 3, 4, 5, 9, 11.
 Put the rest in an appendix.
+
+## Independent cross-check
+
+`crosscheck.py` rebuilds Versions A-C with statsmodels (maximum likelihood) and re-runs GARCH-t with 5-day refits.
+Results: premium 15.8% / 21.6% (ours 15.3% / 20.5%); GARCH-t 99% breach rate 1.80% (ours 1.78%). See `results/crosscheck.csv`.

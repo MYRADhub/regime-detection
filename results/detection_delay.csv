@@ -1,0 +1,9 @@
+index,real-time model,stormy onsets (hindsight),median delay (days),mean delay (days),share caught within 5 days %
+S&P 500,A honest,21,2.0,13.71,66.67
+S&P 500,B future-trained,21,3.0,2.9,95.24
+FTSE 100,A honest,18,3.0,9.78,77.78
+FTSE 100,B future-trained,18,3.0,3.22,88.89
+Nikkei 225,A honest,19,1.0,5.79,73.68
+Nikkei 225,B future-trained,19,3.0,4.21,63.16
+DAX,A honest,19,2.0,7.63,68.42
+DAX,B future-trained,19,4.0,4.37,78.95

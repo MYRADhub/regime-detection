@@ -1,0 +1,21 @@
+index,method,windows,green %,yellow %,red %,mean multiplier
+S&P 500,A honest,5034,60.33,25.41,14.26,3.28
+S&P 500,B future-trained,5034,64.82,23.88,11.3,3.24
+S&P 500,C retrospective,5034,83.93,11.03,5.05,3.12
+S&P 500,Historical sim,5034,55.7,32.62,11.68,3.3
+S&P 500,GARCH-t,5034,48.65,48.79,2.56,3.28
+FTSE 100,A honest,5054,67.47,22.79,9.73,3.24
+FTSE 100,B future-trained,5054,71.65,23.57,4.79,3.18
+FTSE 100,C retrospective,5054,93.19,2.24,4.57,3.06
+FTSE 100,Historical sim,5054,48.97,46.32,4.71,3.3
+FTSE 100,GARCH-t,5054,60.31,36.27,3.42,3.24
+Nikkei 225,A honest,4889,63.53,29.15,7.32,3.23
+Nikkei 225,B future-trained,4889,75.5,19.88,4.62,3.14
+Nikkei 225,C retrospective,4889,94.83,0.8,4.38,3.05
+Nikkei 225,Historical sim,4889,58.64,36.76,4.6,3.29
+Nikkei 225,GARCH-t,4889,64.96,34.71,0.33,3.19
+DAX,A honest,5082,64.58,26.05,9.37,3.22
+DAX,B future-trained,5082,68.85,21.04,10.11,3.21
+DAX,C retrospective,5082,86.19,11.26,2.56,3.09
+DAX,Historical sim,5082,53.09,38.94,7.97,3.3
+DAX,GARCH-t,5082,74.75,25.25,0.0,3.13

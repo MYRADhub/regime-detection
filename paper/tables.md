@@ -129,3 +129,60 @@ Crisis = Sep 2008-Jun 2009, mid-Feb-Jun 2020, all of 2022.
 | 3 regimes                            | 4.4 [0.9, 7.9]  | 6.8 [-2.8, 15.0] | 19.8 [16.0, 23.5] | 29.7 [21.9, 36.0] |
 
 
+
+## Table 9. Basel traffic light for 99% VaR: share of rolling 250-day windows in each zone
+
+| index      | method           |   windows |   green % |   yellow % |   red % |   mean multiplier |
+|:-----------|:-----------------|----------:|----------:|-----------:|--------:|------------------:|
+| S&P 500    | A honest         |      5034 |     60.33 |      25.41 |   14.26 |              3.28 |
+| S&P 500    | B future-trained |      5034 |     64.82 |      23.88 |   11.3  |              3.24 |
+| S&P 500    | C retrospective  |      5034 |     83.93 |      11.03 |    5.05 |              3.12 |
+| S&P 500    | Historical sim   |      5034 |     55.7  |      32.62 |   11.68 |              3.3  |
+| S&P 500    | GARCH-t          |      5034 |     48.65 |      48.79 |    2.56 |              3.28 |
+| FTSE 100   | A honest         |      5054 |     67.47 |      22.79 |    9.73 |              3.24 |
+| FTSE 100   | B future-trained |      5054 |     71.65 |      23.57 |    4.79 |              3.18 |
+| FTSE 100   | C retrospective  |      5054 |     93.19 |       2.24 |    4.57 |              3.06 |
+| FTSE 100   | Historical sim   |      5054 |     48.97 |      46.32 |    4.71 |              3.3  |
+| FTSE 100   | GARCH-t          |      5054 |     60.31 |      36.27 |    3.42 |              3.24 |
+| Nikkei 225 | A honest         |      4889 |     63.53 |      29.15 |    7.32 |              3.23 |
+| Nikkei 225 | B future-trained |      4889 |     75.5  |      19.88 |    4.62 |              3.14 |
+| Nikkei 225 | C retrospective  |      4889 |     94.83 |       0.8  |    4.38 |              3.05 |
+| Nikkei 225 | Historical sim   |      4889 |     58.64 |      36.76 |    4.6  |              3.29 |
+| Nikkei 225 | GARCH-t          |      4889 |     64.96 |      34.71 |    0.33 |              3.19 |
+| DAX        | A honest         |      5082 |     64.58 |      26.05 |    9.37 |              3.22 |
+| DAX        | B future-trained |      5082 |     68.85 |      21.04 |   10.11 |              3.21 |
+| DAX        | C retrospective  |      5082 |     86.19 |      11.26 |    2.56 |              3.09 |
+| DAX        | Historical sim   |      5082 |     53.09 |      38.94 |    7.97 |              3.3  |
+| DAX        | GARCH-t          |      5082 |     74.75 |      25.25 |    0    |              3.13 |
+
+Green 0-4 breaches, yellow 5-9, red 10+. Multiplier = 3 + Basel plus factor.
+
+## Table 10. Days until the real-time model notices a stormy regime that hindsight sees immediately
+
+| index      | real-time model   |   stormy onsets (hindsight) |   median delay (days) |   mean delay (days) |   share caught within 5 days % |
+|:-----------|:------------------|----------------------------:|----------------------:|--------------------:|-------------------------------:|
+| S&P 500    | A honest          |                          21 |                     2 |               13.71 |                          66.67 |
+| S&P 500    | B future-trained  |                          21 |                     3 |                2.9  |                          95.24 |
+| FTSE 100   | A honest          |                          18 |                     3 |                9.78 |                          77.78 |
+| FTSE 100   | B future-trained  |                          18 |                     3 |                3.22 |                          88.89 |
+| Nikkei 225 | A honest          |                          19 |                     1 |                5.79 |                          73.68 |
+| Nikkei 225 | B future-trained  |                          19 |                     3 |                4.21 |                          63.16 |
+| DAX        | A honest          |                          19 |                     2 |                7.63 |                          68.42 |
+| DAX        | B future-trained  |                          19 |                     4 |                4.37 |                          78.95 |
+
+Onset = smoothed P(stormy) crosses 0.5 and stays above for 10+ days after 20+ calm days. Delay capped at 60 days.
+
+## Table 11. Where the look-ahead premium comes from: the 20 days after each regime switch vs all other days
+
+| index      | VaR level   |   switches (hindsight) |   days near a switch % |   share of premium from those days % |   premium near switches % |   premium elsewhere % |
+|:-----------|:------------|-----------------------:|-----------------------:|-------------------------------------:|--------------------------:|----------------------:|
+| S&P 500    | 95%         |                     78 |                  22.64 |                                62.28 |                     29.57 |                  8.5  |
+| S&P 500    | 99%         |                     78 |                  22.64 |                                61.64 |                     34.29 |                 12.42 |
+| FTSE 100   | 95%         |                     70 |                  21.25 |                                68.56 |                     30.73 |                  6.78 |
+| FTSE 100   | 99%         |                     70 |                  21.25 |                                60.39 |                     38.99 |                 14.56 |
+| Nikkei 225 | 95%         |                     78 |                  23.8  |                                57.69 |                     24.7  |                  9.75 |
+| Nikkei 225 | 99%         |                     78 |                  23.8  |                                52.24 |                     32.9  |                 18.75 |
+| DAX        | 95%         |                     72 |                  22.79 |                                58.5  |                     26.44 |                  9.08 |
+| DAX        | 99%         |                     72 |                  22.79 |                                50.79 |                     35.92 |                 21.59 |
+
+Switch = smoothed P(stormy) crosses 0.5. Premium = % lower quantile loss of C than A.
