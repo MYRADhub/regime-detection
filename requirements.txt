@@ -4,5 +4,6 @@ scipy
 matplotlib
 hmmlearn
 arch
+statsmodels
 yfinance
 pytest
