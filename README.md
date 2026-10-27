@@ -22,7 +22,7 @@ Locally:
 ```
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
-.venv/bin/python -m pytest          # 19 tests, about 20 seconds
+.venv/bin/python -m pytest          # 25 tests, about 20 seconds
 .venv/bin/jupyter notebook starter_notebook.ipynb
 ```
 
