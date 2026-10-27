@@ -1,4 +1,4 @@
-"""Robustness experiments. Run: .venv/bin/python run_robustness.py  (about 15 minutes)
+"""Robustness experiments. Run: python run_robustness.py  (about 15 minutes)
 
 Writes:
   results/robustness_premium.csv     look-ahead premium with 95% bootstrap CIs

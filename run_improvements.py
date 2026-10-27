@@ -1,4 +1,4 @@
-"""Further checks for the paper. Run: .venv/bin/python run_improvements.py  (about 10 minutes)
+"""Further checks for the paper. Run: python run_improvements.py  (about 10 minutes)
 
 1. Fat-tailed HMM: each regime uses the actual distribution of returns instead
    of a normal curve. Does the look-ahead premium survive a better model?

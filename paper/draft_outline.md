@@ -562,7 +562,7 @@ comparison because it uses the same model as the reference.
 - A3. Unit-test list as evidence of no leakage (25 tests; names in `paper/WORK_SUMMARY.md`).
 - A4. Full tables 2, 6, 7, 8, 10, 12, 12b, 13 and Figure 4.
 - A5. Cross-check results table (`results/crosscheck.csv`).
-- A6. Software versions. Run `.venv/bin/pip freeze`.
+- A6. Software versions. Run `python -m pip freeze` with the virtual environment active.
 
 ---
 

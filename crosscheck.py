@@ -1,4 +1,4 @@
-"""Independent cross-check of the main numbers. Run: .venv/bin/python crosscheck.py
+"""Independent cross-check of the main numbers. Run: python crosscheck.py
 
 1. GARCH-t: checks the t quantile, re-computes the volatility forecasts with a
    hand-written GARCH recursion, and re-runs GARCH-t with refits every 5 days.

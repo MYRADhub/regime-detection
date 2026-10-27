@@ -41,7 +41,7 @@ not tomorrow's weather. Version C has read tomorrow's newspaper.
 | 2026-10-19 | Paper tables and figures for NHSJS, with a caption-facts README | `981ef41` |
 | 2026-10-20 | Independent statsmodels cross-check; Basel traffic light; detection delay; premium near regime switches | `9cc2521` |
 | 2026-10-20 | Fat-tailed HMM, sub-period stability, Holm correction | `07ce8e1` |
-| 2026-10-27 | Knowledge graph of the repo (`graphify-out/`); two repo fixes (section 9); paper outline and this summary | not yet committed |
+| 2026-10-27 | Knowledge graph of the repo (`graphify-out/`, kept local); repo and Windows fixes (section 9); paper outline, this summary, `results/RESULTS.md`, new README, PDFs | PR #1 and follow-up |
 
 The commits carry a `Co-Authored-By: Claude` trailer, so AI assistance with the code is on the record.
 That is relevant to the journal's AI-use disclosure (section 10).
@@ -293,12 +293,26 @@ verification status. It covers four strands, plus deep reads of five recent comp
 
 ---
 
-## 9. Fixes made on 27 Oct (uncommitted)
+## 9. Fixes made on 27 Oct
 
 1. **`requirements.txt`: added `statsmodels`.** `crosscheck.py` imports it, so a clean install from the
    old file would fail on the cross-check. The local venv already had it (0.15.0).
 2. **`README.md`: test count corrected from 19 to 25.** The suite has grown since the README was
    written. Verified with pytest: 25 passed.
+3. **`requirements.txt`: added `tabulate` and `notebook`.** `make_paper_results.py` calls
+   `DataFrame.to_markdown`, which needs `tabulate`, and the README's notebook step needs `notebook`.
+   Neither was listed, so a clean install could not run either step.
+4. **Windows support.**
+   - `make_paper_results.py` now writes `tables.md` with `encoding="utf-8"`. Windows otherwise uses its
+     local code page.
+   - Script docstrings say `python script.py`, not the Mac/Linux-only `.venv/bin/python`.
+   - The README gives Windows and Mac/Linux commands side by side.
+   - The code itself was already portable: forward-slash relative paths, `if __name__ == "__main__"`
+     guards, no shell calls, no multiprocessing, and no non-ASCII characters in the source. It has not
+     yet been run on an actual Windows machine.
+5. **`.gitignore`:** added `.DS_Store` and `graphify-out/`.
+6. **New `results/RESULTS.md`:** every experiment explained in plain words with its full result tables.
+7. **README rewritten** in simple language, with a glossary and a troubleshooting table.
 
 ---
 
@@ -318,21 +332,25 @@ These are carried over to `draft_outline.md`, where each is attached to the sect
 | 8 | AI-use disclosure | Commits are co-authored by Claude, and NHSJS restricts AI-written prose | Check the current NHSJS policy; disclose AI help with code and analysis; authors write all prose |
 | 9 | Six method citations missing from `00-references.md` (Bollerslev 1987, Künsch 1989, Holm 1979, Newey & West 1987, Rabiner 1989, Koenker & Bassett 1978) | Needed for the methods section | Add and verify |
 | 10 | SSRN not searched in the novelty check | A recent working paper could exist | One targeted title search before submission |
-| 11 | `graphify-out/` is not in `.gitignore` | Repo hygiene | Decide whether to commit or ignore |
 
 ---
 
 ## 11. How to reproduce everything
 
+Activate the environment first, then type `python`. Without activation, use
+`.venv\Scripts\python` on Windows or `.venv/bin/python` on Mac/Linux in place of `python`.
+
 ```
 python -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python -m pytest                 # 25 tests, about 20 s
-.venv/bin/python run_robustness.py         # about 15 min
-.venv/bin/python run_extras.py
-.venv/bin/python run_improvements.py       # about 10 min
-.venv/bin/python crosscheck.py
-.venv/bin/python make_paper_results.py     # writes paper/ tables and figures
+# Windows:      .venv\Scripts\activate
+# Mac / Linux:  source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pytest                 # 25 tests, about 20 s
+python run_robustness.py         # about 15 min
+python run_extras.py
+python run_improvements.py       # about 10 min
+python crosscheck.py
+python make_paper_results.py     # writes paper/ tables and figures
 ```
 
 Data comes from `data/*.csv`, so no network access is needed after the first download.

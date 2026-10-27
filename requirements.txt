@@ -7,3 +7,5 @@ arch
 statsmodels
 yfinance
 pytest
+tabulate
+notebook

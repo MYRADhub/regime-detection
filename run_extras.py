@@ -1,4 +1,4 @@
-"""Two extra analyses for the paper. Run: .venv/bin/python run_extras.py  (about 5 minutes)
+"""Two extra analyses for the paper. Run: python run_extras.py  (about 5 minutes)
 
 1. Regulatory consequence: the Basel traffic light for 99% VaR on every rolling
    250-day window. Would hindsight change a regulator's verdict?
